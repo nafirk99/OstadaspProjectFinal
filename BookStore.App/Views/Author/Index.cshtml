@@ -1,0 +1,49 @@
+﻿@model List<Author>
+
+<h1>All my books</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">Books</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var author in Model)
+        {
+            <tr>
+                <th scope="row">@author.Id</th>
+                <td>@author.Name</td>
+                <td>@string.Join(",", author.Books.Select(n => n.Title))</td>
+                <td>
+                    <a asp-controller="Author"
+                       asp-action="Modify"
+                       asp-route-id="@author.Id"
+                       class="btn btn-primary">
+                        Modify
+                    </a>
+                    <a 
+                        asp-controller="Author" 
+                        asp-action="Details" 
+                        asp-route-id="@author.Id"
+                        class="btn btn-primary">
+                        Show details
+                    </a>
+                    <a asp-controller="Author"
+                       asp-action="Delete"
+                       asp-route-id="@author.Id"
+                       class=" btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+               
+               
+               
+            </tr>
+        }
+    </tbody>
+</table>

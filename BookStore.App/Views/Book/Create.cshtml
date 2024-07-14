@@ -1,0 +1,62 @@
+﻿@model PostBookVM
+
+@{
+    ViewData["Title"] = "Add a new book";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New Book</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="CreateConfirm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" asp-for="@Model.Book.Id" class="form-control" />
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Book.Title" class="control-label"></label>
+                        <input asp-for="@Model.Book.Title" class="form-control" />
+                        <span asp-validation-for="@Model.Book.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Book.AuthorId" class="control-label"></label>
+                        @* <input asp-for="Author" class="form-control" /> *@
+
+                        <select class="form-select" asp-for="@Model.Book.AuthorId" aria-label="Default select example">
+                            <option selected>Select author</option>
+                            @foreach(var author in Model.Authors)
+                            {
+                                <option value="@author.Id">@author.Name</option>
+                            }
+                        </select>
+
+                        <span asp-validation-for="@Model.Book.AuthorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Book.URLimg" class="control-label"></label>
+                        <input asp-for="@Model.Book.URLimg" class="form-control" />
+                        <span asp-validation-for="@Model.Book.URLimg" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Book.PublishedYear" class="control-label"></label>
+                        <input asp-for="@Model.Book.PublishedYear" class="form-control" />
+                        <span asp-validation-for="@Model.Book.PublishedYear" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Book.NrOfPages" class="control-label"></label>
+                        <input asp-for="@Model.Book.NrOfPages" class="form-control" />
+                        <span asp-validation-for="@Model.Book.NrOfPages" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

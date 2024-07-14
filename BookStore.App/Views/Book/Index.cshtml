@@ -1,0 +1,54 @@
+﻿@model List<Book>
+
+<h1>All my books</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Profile Picture</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var book in Model)
+        {
+            <tr>
+                <th scope="row">@book.Id</th>
+                <td>@book.Title</td>
+                <td>@book.Author.Name</td>
+                <td>
+                    <img src="@Url.Content(book.URLimg)" width="50"/>
+                </td>
+                <td>
+                    <a asp-controller="Book"
+                       asp-action="Modify"
+                       asp-route-id="@book.Id"
+                       class="btn btn-primary">
+                        Modify
+                    </a>
+                    <a 
+                        asp-controller="Book" 
+                        asp-action="Details" 
+                        asp-route-id="@book.Id"
+                        class="btn btn-primary">
+                        Show details
+                    </a>
+                    <a asp-controller="Book"
+                       asp-action="Delete"
+                       asp-route-id="@book.Id"
+                       class=" btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+               
+               
+               
+            </tr>
+        }
+    </tbody>
+</table>
